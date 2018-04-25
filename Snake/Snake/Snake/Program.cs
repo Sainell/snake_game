@@ -11,32 +11,32 @@ namespace Snake
         static void Main()
         {
 
-            Point p1 = new Point(1, 3,'*');           
-            //p1.Draw();
+            Point p1 = new Point(15, 3,'*');           
+            p1.Draw();
 
-            Point p2 = new Point(4,5,'#');
-            //   p2.Draw();
+            
 
-            //List<char> charList = new List<char>();
-            //charList.Add('+');
-            //charList.Add('-');
-            //charList.Add('=');
 
-            //List<Point> pointList = new List<Point>();
-            //pointList.Add(p1);
-            //pointList.Add(p2);
-            //pointList.Add(new Point(5, 5, '&'));
-
-            //foreach (Point a in pointList)
-            //{
-            //    a.Draw();
-            //}
-           HorizLine Hline = new HorizLine(0, 79, 0, '*');
+          //рамка
+           
+            HorizLine Hline = new HorizLine(1, 50, 1, '*');
+            HorizLine Hline2 = new HorizLine(1, 50, 20, '*');
             Hline.Draw();
-            VertLine Vline = new VertLine(0, 0, 24, '*');
+            Hline2.Draw();
+            VertLine Vline = new VertLine(1, 1, 20, '*');
+            VertLine Vline2 = new VertLine(50, 1, 20, '*');
             Vline.Draw();
-            Console.ReadLine();
+            Vline2.Draw();
+            
+            //**
 
+            Point start = new Point(4, 5, '@');
+
+            Snake snake = new Snake(start, 3, Direction.RIGHT);
+            snake.Draw();
+
+
+            Console.ReadLine();
         }
 
        
