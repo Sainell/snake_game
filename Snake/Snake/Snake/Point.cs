@@ -53,6 +53,7 @@ namespace Snake
         {
             Console.SetCursorPosition(x, y);
             Console.Write(sym);
+            ///123123
         }
         public void Clear()
         {
