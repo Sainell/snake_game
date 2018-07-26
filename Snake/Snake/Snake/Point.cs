@@ -28,6 +28,12 @@ namespace Snake
             y = p.y;
             sym = p.sym;
         }
+        public bool isHit(Point p)
+        {
+            if (p.x == this.x && p.y == this.y)
+                return true;
+            else return false;
+        }
 
         public void Move(int offset, Direction direction)
         {

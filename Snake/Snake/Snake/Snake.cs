@@ -23,7 +23,7 @@ namespace Snake
             }
 
         }
-
+        
         internal void Move()
         {
 
@@ -54,6 +54,18 @@ namespace Snake
                 direction = Direction.UP;
             if (key == ConsoleKey.DownArrow)
                 direction = Direction.DOWN;
+        }
+        public bool Eat(Point food)
+        {
+            Point head = GetNextPoint();
+            if (head.isHit(food))
+            {
+                food.sym = head.sym;
+                pList.Add(food);
+                food.Draw();
+                return true;
+            }
+            else return false;
         }
     }
 }
