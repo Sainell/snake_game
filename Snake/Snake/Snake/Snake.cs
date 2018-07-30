@@ -9,11 +9,13 @@ namespace Snake
     class Snake : Figure
     {
         public Direction direction;
+        public Direction LastDirection = Direction.RIGHT;
+
         public Snake(Point tail, int lenght, Direction _direction)
         {
             direction = _direction;
             pList = new List<Point>();
-            for (int i =0; i <lenght; i++)
+            for (int i = 0; i < lenght; i++)
             {
 
                 Point p = new Point(tail);
@@ -23,7 +25,7 @@ namespace Snake
             }
 
         }
-        
+
         internal void Move()
         {
 
@@ -45,15 +47,23 @@ namespace Snake
 
         public void HandleKey(ConsoleKey key)
         {
+
+            if (key == ConsoleKey.LeftArrow && LastDirection != Direction.RIGHT)
             
-            if (key == ConsoleKey.LeftArrow)
                 direction = Direction.LEFT;
-            if (key == ConsoleKey.RightArrow)
+                LastDirection = direction;
+                           
+            if (key == ConsoleKey.RightArrow && LastDirection != Direction.LEFT)
                 direction = Direction.RIGHT;
-            if (key == ConsoleKey.UpArrow)
+                LastDirection = direction;
+
+            if (key == ConsoleKey.UpArrow && LastDirection != Direction.DOWN)
                 direction = Direction.UP;
-            if (key == ConsoleKey.DownArrow)
+                LastDirection = direction;
+
+            if (key == ConsoleKey.DownArrow && LastDirection != Direction.UP)
                 direction = Direction.DOWN;
+                LastDirection = direction;
         }
         public bool Eat(Point food)
         {
@@ -67,5 +77,30 @@ namespace Snake
             }
             else return false;
         }
+        public bool IsHit(Figure figure)
+        {
+            Point head = GetNextPoint();
+
+            foreach (Point p in figure.pList)
+            {
+                if (head.isHit(p))
+                {
+                    return true;
+                }
+                
+            }
+            return false;
+        }
+        public bool IsHitTail()
+        {
+            Point head = GetNextPoint();
+            for (int i=0; i<pList.Count-2; i++)
+            {
+                if (head.isHit(pList[i]))
+                return true;
+            }
+            return false;
+        }
+       
     }
 }

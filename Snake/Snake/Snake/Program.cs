@@ -12,22 +12,17 @@ namespace Snake
         static void Main()
         {
 
-          //  Point p1 = new Point(15, 3,'$');           
-          //  p1.Draw();
-
-            
+            //  Point p1 = new Point(15, 3,'$');           
+            //  p1.Draw();
 
 
-          //рамка
-           
-            HorizLine Hline = new HorizLine(1, 50, 1, '*');
-            HorizLine Hline2 = new HorizLine(1, 50, 20, '*');
-            Hline.Draw();
-            Hline2.Draw();
-            VertLine Vline = new VertLine(1, 1, 20, '*');
-            VertLine Vline2 = new VertLine(50, 1, 20, '*');
-            Vline.Draw();
-            Vline2.Draw();
+
+
+            //рамка
+            Walls walls = new Walls(50, 20, '=');
+            walls.Draw();
+          
+
 
             //еда
             FoodCreator foodcreator = new FoodCreator(50, 20, '$');
@@ -41,6 +36,10 @@ namespace Snake
 
             while (true)
             {
+                if (snake.IsHit(walls) || snake.IsHitTail())
+                {
+                    break;
+                }
                 if (snake.Eat(food))
                 {
                     food = foodcreator.CreateFood();
