@@ -21,6 +21,12 @@ namespace Snake
                 p.Draw();
             }
         }
-
+        public void Clear()
+        {
+            foreach (Point p in pList)
+            {
+                p.Clear();
+            }
+        }
     }
 }

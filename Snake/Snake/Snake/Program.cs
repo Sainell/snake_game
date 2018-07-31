@@ -19,13 +19,15 @@ namespace Snake
 
 
             //рамка
-            Walls walls = new Walls(50, 20, '=');
+            Walls walls = new Walls(60, 25, '*');
             walls.Draw();
-          
 
+            //очки 
+            Snake_Interface score = new Snake_Interface(62, 2);
+            score.ShowScore();
 
             //еда
-            FoodCreator foodcreator = new FoodCreator(50, 20, '$');
+            FoodCreator foodcreator = new FoodCreator(60, 25, '$');
             Point food = foodcreator.CreateFood();
             food.Draw();  
 
@@ -38,12 +40,29 @@ namespace Snake
             {
                 if (snake.IsHit(walls) || snake.IsHitTail())
                 {
-                    break;
+                    score.Health();
+                    score.ShowScore();
+                    snake.Clear();
+                    snake = new Snake(start, 10, Direction.RIGHT);
+                    
+                    if (score.health == 0)
+                    {
+                        
+
+                        Console.SetCursorPosition(25, 10);
+                        Console.WriteLine("GAME OVER");
+                        Thread.Sleep(Timeout.Infinite);
+
+                    }
+                    Thread.Sleep(500);
                 }
                 if (snake.Eat(food))
                 {
                     food = foodcreator.CreateFood();
                     food.Draw();
+                    score.ScorePlus();
+                    score.ShowScore();
+
                 }
                 if (Console.KeyAvailable)
                 {
@@ -52,6 +71,7 @@ namespace Snake
                 }
                 Thread.Sleep(100);
                 snake.Move();
+                
             }
 
             
