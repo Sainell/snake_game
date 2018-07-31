@@ -30,7 +30,7 @@ namespace Snake
             FoodCreator foodcreator = new FoodCreator(60, 25, '$');
             Point food = foodcreator.CreateFood();
             food.Draw();  
-
+            //
             // змея
             Point start = new Point(4, 5, '☼');
             Snake snake = new Snake(start, 10, Direction.RIGHT);
