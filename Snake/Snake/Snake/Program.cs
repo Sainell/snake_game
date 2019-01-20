@@ -25,19 +25,20 @@ namespace Snake
             //очки 
             Snake_Interface score = new Snake_Interface(62, 2);
             score.ShowScore();
-
-            //еда
-            FoodCreator foodcreator = new FoodCreator(60, 25, '$');
-            Point food = foodcreator.CreateFood();
-            food.Draw();  
-            //
             // змея
             Point start = new Point(4, 5, '☼');
             Snake snake = new Snake(start, 10, Direction.RIGHT);
             snake.Draw();
+            //еда
+            FoodCreator foodcreator = new FoodCreator(60, 25, '$');
+            Point food = foodcreator.CreateFood(snake);
+            food.Draw();
+            //
+            
 
             while (true)
             {
+                
                 if (snake.IsHit(walls) || snake.IsHitTail())
                 {
                     score.Health();
@@ -58,10 +59,11 @@ namespace Snake
                 }
                 if (snake.Eat(food))
                 {
-                    food = foodcreator.CreateFood();
+                    food = foodcreator.CreateFood(snake);
                     food.Draw();
                     score.ScorePlus();
                     score.ShowScore();
+                    snake.Draw();
 
                 }
                 if (Console.KeyAvailable)

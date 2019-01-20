@@ -30,7 +30,7 @@ namespace Snake
         }
         public bool isHit(Point p)
         {
-            if (p.x == this.x && p.y == this.y)
+            if (p.x == x && p.y == y)
                 return true;
             else return false;
         }

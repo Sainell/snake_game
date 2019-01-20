@@ -36,6 +36,8 @@ namespace Snake
 
             tail.Clear();
             head.Draw();
+            
+            
         }
         public Point GetNextPoint()
         {
@@ -67,7 +69,7 @@ namespace Snake
         }
         public bool Eat(Point food)
         {
-            Point head = GetNextPoint();
+            Point head = pList.Last();
             if (head.isHit(food))
             {
                 food.sym = head.sym;
@@ -79,7 +81,7 @@ namespace Snake
         }
         public bool IsHit(Figure figure)
         {
-            Point head = GetNextPoint();
+            Point head = pList.Last();
 
             foreach (Point p in figure.pList)
             {
@@ -93,7 +95,7 @@ namespace Snake
         }
         public bool IsHitTail()
         {
-            Point head = GetNextPoint();
+            Point head = pList.Last();
             for (int i=0; i<pList.Count-2; i++)
             {
                 if (head.isHit(pList[i]))
@@ -101,6 +103,7 @@ namespace Snake
             }
             return false;
         }
+        
        
     }
 }
