@@ -36,9 +36,22 @@ namespace Snake
 
             tail.Clear();
             head.Draw();
-            
-            
+
         }
+
+        internal void AutoMove(Point point)
+        {
+            
+            Point tail = pList.First();
+            pList.Remove(tail);
+            Point head = point;
+            head.sym ='☼';
+            pList.Add(head);
+            tail.Clear();
+            head.Draw();
+
+        }
+
         public Point GetNextPoint()
         {
             Point head = pList.Last();
@@ -81,7 +94,7 @@ namespace Snake
         }
         public bool IsHit(Figure figure)
         {
-            Point head = pList.Last();
+            Point head = GetNextPoint();
 
             foreach (Point p in figure.pList)
             {

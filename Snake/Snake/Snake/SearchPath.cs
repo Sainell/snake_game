@@ -20,8 +20,8 @@ namespace Snake
 
         public SearchPath(int mapWidth, int mapHeight)
         {
-            this.mapWidth = mapWidth - 1;
-            this.mapHeight = mapHeight - 1;
+            this.mapWidth = mapWidth;
+            this.mapHeight = mapHeight;
 
         }
         public void Search(Point _start, Point _finish, Figure _snake)
@@ -34,6 +34,7 @@ namespace Snake
             step = 0;
             finishFlag = false;
             path.Clear();
+            
             for (int i = 0; i < field.GetLength(0); i++)
                 for (int j = 0; j < field.GetLength(1); j++)
                 {
@@ -128,13 +129,16 @@ namespace Snake
 
                 }
                 step++;
-
+                
             } while (step < field.GetLength(0) * field.GetLength(1) && finishFlag != true);
-
+            
 
             do
             {
-
+                if (path.Count == 0)
+                {
+                    path.Add(new Point(finish.x, finish.y, '$'));
+                }
                 step--;
                 if (finishFlag == true && step >= 0)
 
